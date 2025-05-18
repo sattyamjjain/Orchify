@@ -1,0 +1,5 @@
+agno
+jinja2
+click
+mcp
+openai

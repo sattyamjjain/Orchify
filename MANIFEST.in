@@ -1,0 +1,9 @@
+include LICENSE
+include README.md
+
+recursive-include orchify/templates *.j2
+exclude orchify.json
+exclude Dockerfile
+exclude requirements.txt
+
+global-exclude __pycache__ *.py[cod] *.egg-info

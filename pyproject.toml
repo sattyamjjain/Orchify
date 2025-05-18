@@ -1,0 +1,39 @@
+[project]
+name = "orchify"
+version = "0.1.0"
+description = "AI-driven Dockerfile generator for any Python project"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name="Sattyam Jain", email="you@example.com" }]
+keywords = ["docker","cli","ai","devops","automation"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "click",
+    "agno",
+    "mcp",
+    "anthropic",
+    "openai",
+    "jinja2"
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/Orchify"
+Repository = "https://github.com/yourusername/Orchify"
+Documentation = "https://yourusername.github.io/Orchify"
+
+[project.scripts]
+orchify = "orchify.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0","wheel","build"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
