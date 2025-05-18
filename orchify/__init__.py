@@ -1,6 +1,6 @@
 """Orchify: AI-driven Dockerfile and .dockerignore generator for Python projects."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 # Optional: expose your main entry-point and generator helper at package level
 from .cli import main  # so you can programmatically invoke Orchify

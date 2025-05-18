@@ -1,12 +1,56 @@
 [project]
 name = "orchify"
-version = "0.1.0"
+version = "0.2.0"
 description = "AI-driven Dockerfile generator for any Python project"
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
-authors = [{ name="Sattyam Jain", email="you@example.com" }]
-keywords = ["docker","cli","ai","devops","automation"]
+authors = [{ name="Sattyam Jain", email="sattyamjain96@gmail.com" }]
+keywords = [
+    "docker",
+    "dockerfile",
+    "container",
+    "containers",
+    "containerization",
+    "cli",
+    "command-line",
+    "ai",
+    "agentic-ai",
+    "aiops",
+    "devops",
+    "automation",
+    "orchestration",
+    "cicd",
+    "continuous-integration",
+    "continuous-deployment",
+    "github-actions",
+    "gitlab-ci",
+    "jenkins",
+    "infrastructure-as-code",
+    "iac",
+    "terraform",
+    "ansible",
+    "kubernetes",
+    "helm",
+    "cloud",
+    "aws",
+    "azure",
+    "gcp",
+    "serverless",
+    "pydantic",
+    "jinja2",
+    "mcp",
+    "agn0",
+    "openai",
+    "anthropic",
+    "templates",
+    "python",
+    "tooling",
+    "dev-tooling",
+    "infrastructure",
+    "monitoring",
+    "logging",
+]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
@@ -24,9 +68,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/Orchify"
-Repository = "https://github.com/yourusername/Orchify"
-Documentation = "https://yourusername.github.io/Orchify"
+Homepage = "https://github.com/sattyamjjain/Orchify"
+Repository = "https://github.com/sattyamjjain/Orchify"
+Documentation = "https://github.com/sattyamjjain/Orchify"
 
 [project.scripts]
 orchify = "orchify.cli:main"

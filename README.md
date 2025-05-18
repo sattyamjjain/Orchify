@@ -1,28 +1,29 @@
 # Orchify
 [![PyPI version](https://img.shields.io/pypi/v/orchify.svg)](https://pypi.org/project/orchify) [![Python versions](https://img.shields.io/pypi/pyversions/orchify.svg)](https://pypi.org/project/orchify)
 
-AI-driven Dockerfile and .dockerignore generator for **any** Python project.
+AI-driven Dockerfile, DevOps automation, and CI/CD orchestrator for **any** Python project.
 
 ---
 
 ## 🚀 Overview
 
-Orchify is a command-line tool that uses AI agents (via Agno and the Model Context Protocol) to:
+Orchify (formerly Orchestron) is a command-line tool that uses AI agents (via Agno and the Model Context Protocol) to:
 
-1. **Scan** a Python project and analyze its structure, dependencies, and entrypoints.
-2. **Generate** a production-grade, multi-stage **Dockerfile** and corresponding **.dockerignore**—tailored to the project—without manual template editing.
+1. **Scan** a Python project and analyze its structure, dependencies, entrypoints, and infrastructure needs.
+2. **Generate** production-grade, multi-stage **Dockerfiles**, **.dockerignore**, **Docker Compose**, **CI/CD workflows**, and other DevOps configurations—tailored to your project automatically.
 
-Whether you're containerizing a microservice, a Flask app, or a complex multi-package repository, Orchify will craft best-practice container configurations in seconds.
+Whether you’re containerizing microservices, setting up cloud deployments, or building full CI/CD pipelines, Orchify crafts best-practice infrastructure in seconds.
 
 ---
 
 ## 🔧 Features
 
-- **Framework Agnostic**: Works with plain Python scripts, Flask, FastAPI, Django, and more.
-- **AI-Powered**: Leverages Anthropic Claude or OpenAI GPT models to write idiomatic Dockerfiles.
-- **Two-Step Workflow**: `scan` → `gen` for clear separation of analysis and generation.
-- **Production-Ready**: Generates multi-stage builds, non-root users, cache optimizations.
-- **Customizable**: Override prompts, model choices, output paths via CLI flags.
+- **Framework Agnostic**: Works with plain Python scripts, Flask, FastAPI, Django, AWS Lambdas, and more.
+- **AI-Powered**: Leverages Anthropic Claude or OpenAI GPT models to write idiomatic DevOps artifacts.
+- **Extensible**: Generates Dockerfiles, `docker-compose.yml`, GitHub Actions workflows, and can be extended for Terraform, Kubernetes, etc.
+- **Token-Aware**: Dynamically selects models based on codebase size to avoid context limits.
+- **Typed Manifest**: Produces a Pydantic-validated `orchify.json` as a single source of truth for your DevOps pipeline.
+- **Logging & Debugging**: Built-in logging to trace scans and generations.
 
 ---
 
@@ -35,85 +36,86 @@ pip install orchify
 Or from source:
 
 ```bash
-git clone https://github.com/yourusername/Orchify.git
-cd Orchify
-docker run -it --rm \
-  -v "$PWD":/workspace \
-  python:3.11-slim bash -c "pip install -e ."
+git clone https://github.com/sattyamjjain/Orchify.git
+cd orchify
+pip install -e .
 ```
 
 ---
 
 ## 🔨 Usage
 
-Orchify exposes three primary commands via the `orchify` CLI:
+Orchify CLI has three main commands:
 
-### 1. `hello`
+### `hello`
 
-A sanity-check command:
+A quick check:
 
 ```bash
 orchify hello
 # 👋 Welcome to Orchify!
 ```
 
-### 2. `scan`
+### `scan`
 
-Analyze your project and write out `orchify.json` metadata.
+Analyze and build `orchify.json` manifest:
 
 ```bash
-orchify scan \
-  --dir /path/to/your/project \
-  --prompt "Summarize my project for Dockerfile generation"
+orchify scan  --dir /path/to/your/project
 ```
 
 **Options:**
 
-- `-d, --dir` <path>: Project directory (default: current directory).
-- `-p, --prompt` <text>: Custom AI analysis prompt.
+- `-d, --dir` _path_: Project directory (default: current).
+- `-p, --prompt` _text_: Custom AI prompt.
 
-### 3. `gen`
+### `gen`
 
-Generate `Dockerfile` and `.dockerignore` based on the scan metadata.
+Generate DevOps artifacts from the manifest:
 
 ```bash
-orchify gen \
-  --model-id claude-3-7-sonnet-latest \
-  --output Dockerfile
+orchify gen   --model-id claude-3-7-sonnet-latest   --output ./Dockerfile
 ```
 
 **Options:**
 
-- `-m, --model-id` <model>: Anthropic/OpenAI model to use.
-- `-o, --output` <path>: Path for the generated Dockerfile (default: `Dockerfile`).
+- `-m, --model-id` _model_: AI model.
+- `-o, --output` _path_: Dockerfile path (default: `Dockerfile`).
 
 ---
 
 ## ⚙️ Configuration
 
-Orchify uses environment variables to authenticate with AI providers:
+Authenticate AI providers via environment variables:
 
-| Variable             | Description                      |
-|----------------------|----------------------------------|
-| `ANTHROPIC_API_KEY`  | Your Anthropic Claude API token. |
-| `OPENAI_API_KEY`     | Your OpenAI API key (optional).  |
+| Variable            | Description                 |
+|---------------------|-----------------------------|
+| `ANTHROPIC_API_KEY` | Anthropic Claude API token. |
+| `OPENAI_API_KEY`    | OpenAI API key.             |
 
-Set them in your shell or `.env` before running commands.
+---
+
+## 📄 Manifest Schema (`orchify.json`)
+
+Orchify emits a Pydantic-validated manifest that includes:
+
+- Project metadata (name, version, repo)
+- Dependencies & install commands
+- Source & entrypoint files
+- Docker Compose service definitions
+- CI/CD workflow settings
+- Security scanning configs
+- Notification hooks
+
+Use this manifest to drive CI/CD or further automation.
 
 ---
 
 ## 🛠️ Development
 
-From your dev clone:
-
 ```bash
-# Install editable
 pip install -e .
-
-# Run tests
 pytest tests/
-
-# Lint & format
 flake8 orchify tests
 black orchify tests
 ```
@@ -122,17 +124,10 @@ black orchify tests
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the repo.
-2. Create a feature branch: `git checkout -b feature/awesome`.
-3. Commit your changes and push.
-4. Open a Pull Request.
-
-Please adhere to the existing code style and add tests for any new functionality.
+Contributions welcome! Please fork, branch, and open a PR.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](LICENSE) for details.

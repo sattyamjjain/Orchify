@@ -3,3 +3,6 @@ jinja2
 click
 mcp
 openai
+tiktoken
+pytest
+pydantic
